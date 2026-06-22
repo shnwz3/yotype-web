@@ -1,0 +1,227 @@
+.hero {
+  position: relative;
+  min-height: calc(100vh - 60px);
+  padding: 80px 32px 60px;
+  overflow: hidden;
+}
+
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 80px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 80px);
+  opacity: 0.6;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%);
+}
+
+.bgGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 800px 600px at 70% 50%, rgba(108, 71, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroContainer {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 42% 58%;
+  gap: 48px;
+  align-items: center;
+  z-index: 1;
+}
+
+/* Hero Left */
+.heroLeft {
+  max-width: 540px;
+}
+
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  font-size: 12px;
+  color: #aaa;
+  font-weight: 500;
+  margin-bottom: 28px;
+}
+
+.eyebrowTag {
+  background: rgba(108, 71, 255, 0.18);
+  color: #b9a4ff;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.headline {
+  font-size: clamp(38px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin: 0 0 24px;
+}
+
+.headline .accent {
+  background: linear-gradient(90deg, #ffffff 0%, #b9a4ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subhead {
+  font-size: 18px;
+  line-height: 1.55;
+  color: #888;
+  max-width: 440px;
+  margin: 0 0 32px;
+}
+
+.ctaRow {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btnPrimary {
+  background: #6c47ff;
+  color: #fff;
+  box-shadow: 0 0 0 0 rgba(108, 71, 255, 0);
+}
+
+.btnPrimary:hover {
+  box-shadow: 0 0 32px rgba(108, 71, 255, 0.55);
+  transform: translateY(-1px);
+}
+
+.btnSecondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btnSecondary:hover {
+  border-color: #6c47ff;
+  color: #fff;
+}
+
+.socialProof {
+  font-size: 13px;
+  color: #555;
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.socialProof span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Scrolling Pills */
+.pillsWrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 540px;
+  mask-image: linear-gradient(90deg, transparent 0, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, black 8%, black 92%, transparent 100%);
+}
+
+.pillsTrack {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  animation: pills-scroll 38s linear infinite;
+}
+
+.pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #aaaaaa;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.heroRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 560px;
+}
+
+@keyframes pills-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 960px) {
+  .hero {
+    padding: 48px 20px;
+  }
+  .heroContainer {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  .heroLeft {
+    order: 2;
+    max-width: 100%;
+  }
+  .heroRight {
+    order: 1;
+    min-height: 400px;
+  }
+  .pillsWrapper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding: 36px 18px;
+  }
+  .headline {
+    font-size: clamp(34px, 8vw, 48px);
+  }
+  .subhead {
+    font-size: 16px;
+  }
+  .btn {
+    padding: 12px 22px;
+    font-size: 14px;
+  }
+  .socialProof {
+    gap: 14px;
+    font-size: 12px;
+  }
+}
