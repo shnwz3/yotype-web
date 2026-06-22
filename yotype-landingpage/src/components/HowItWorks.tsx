@@ -13,8 +13,8 @@ export default function HowItWorks() {
         width: "52px",
         height: "52px",
         borderRadius: "10px",
-        background: "rgba(108, 71, 255, 0.1)",
-        border: "1px solid rgba(108, 71, 255, 0.3)",
+        background: "var(--color-brand-light-more)",
+        border: "1px solid var(--color-brand-glow-subtle)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -22,7 +22,7 @@ export default function HowItWorks() {
       textStyles: {
         fontFamily: "'JetBrains Mono', monospace",
         fontSize: "14px",
-        color: "rgb(108, 71, 255)",
+        color: "var(--color-brand)",
         fontWeight: 500,
       },
       hasConnector: true,
@@ -36,8 +36,8 @@ export default function HowItWorks() {
         width: "52px",
         height: "52px",
         borderRadius: "10px",
-        background: "rgba(108, 71, 255, 0.1)",
-        border: "1px solid rgba(108, 71, 255, 0.3)",
+        background: "var(--color-brand-light-more)",
+        border: "1px solid var(--color-brand-glow-subtle)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -46,7 +46,7 @@ export default function HowItWorks() {
         fontFamily: "'JetBrains Mono', monospace",
         fontSize: "28px",
         fontWeight: 700,
-        color: "rgb(108, 71, 255)",
+        color: "var(--color-brand)",
         lineHeight: 1,
       },
       hasConnector: true,
@@ -61,15 +61,15 @@ export default function HowItWorks() {
         width: "52px",
         height: "52px",
         borderRadius: "10px",
-        background: "rgba(108, 71, 255, 0.1)",
-        border: "1px solid rgba(108, 71, 255, 0.3)",
+        background: "var(--color-brand-light-more)",
+        border: "1px solid var(--color-brand-glow-subtle)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       },
       textStyles: {
         fontSize: "28px",
-        color: "rgb(0, 212, 255)",
+        color: "var(--color-accent)",
         lineHeight: 1,
       },
       hasConnector: false,
@@ -95,7 +95,7 @@ export default function HowItWorks() {
   const marqueePlatforms = [...platforms, ...platforms];
 
   return (
-    <section className="how-it-works-section" data-testid="how-it-works-section">
+    <section className="how-it-works-section" id="how-it-works" data-testid="how-it-works-section">
       <div className="how-it-works-container">
         {/* Headline */}
         <div className="how-it-works-headline" data-testid="how-it-works-headline">

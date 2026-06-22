@@ -51,8 +51,8 @@ export default function Hero() {
           </h1>
           
           <p className="subhead" data-anim="left" data-testid="hero-subhead">
-            Intento brings AI into any text field on your desktop. One{" "}
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", color: "#b9a4ff" }}>
+            YoType brings AI into any text field on your desktop. One{" "}
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", color: "var(--color-brand-tint)" }}>
               /command
             </span>{" "}
             and it writes, rewrites, fills, and sends. No switching apps. No copy-pasting. Ever again.

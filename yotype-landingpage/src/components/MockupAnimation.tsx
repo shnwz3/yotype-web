@@ -9,45 +9,32 @@ import styles from "./MockupAnimation.module.css";
 export default function MockupAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
   const masterRef = useRef<gsap.core.Timeline | null>(null);
-  
-  const hintRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLDivElement>(null);
-  const cmdRef = useRef<HTMLSpanElement>(null);
-  const restRef = useRef<HTMLSpanElement>(null);
-  const cursorRef = useRef<HTMLSpanElement>(null);
-  const shimmerRef = useRef<HTMLDivElement>(null);
-  
-  const emailPanelRef = useRef<HTMLDivElement>(null);
-  const emailSubjectRef = useRef<HTMLDivElement>(null);
-  const emailContentRef = useRef<HTMLDivElement>(null);
-  const sentBadgeRef = useRef<HTMLDivElement>(null);
-  const sendBtnRef = useRef<HTMLDivElement>(null);
-  
-  const rewritePanelRef = useRef<HTMLDivElement>(null);
-  const rewriteBeforeRef = useRef<HTMLDivElement>(null);
-  const rewriteAfterRef = useRef<HTMLDivElement>(null);
-  
-  const promptPanelRef = useRef<HTMLDivElement>(null);
-  const promptTextRef = useRef<HTMLDivElement>(null);
-  
   const [activeDot, setActiveDot] = useState(0);
 
   useGSAP(() => {
+    const q = gsap.utils.selector(containerRef);
+
     // Typewriter helper
-    const tw = (el: HTMLElement | null, text: string, duration: number, showCursor = false) => {
-      if (!el) return gsap.timeline();
-      el.textContent = "";
+    const tw = (selector: string, text: string, duration: number, showCursor = false) => {
       const obj = { i: 0 };
       return gsap.to(obj, {
         i: text.length,
         duration,
         ease: "none",
+        onStart: () => {
+          const el = q(selector)[0];
+          if (el) el.textContent = "";
+        },
         onUpdate: () => {
+          const el = q(selector)[0];
           const currentCount = Math.round(obj.i);
-          el.textContent = text.slice(0, currentCount) + (showCursor && currentCount < text.length ? "|" : "");
+          if (el) {
+            el.textContent = text.slice(0, currentCount) + (showCursor && currentCount < text.length ? "|" : "");
+          }
         },
         onComplete: () => {
-          el.textContent = text;
+          const el = q(selector)[0];
+          if (el) el.textContent = text;
         }
       });
     };
@@ -57,7 +44,7 @@ export default function MockupAnimation() {
       idx,
       command,
       restText,
-      resultPanel,
+      resultPanelSelector,
       populate,
       holdAfter = 2,
       resetTop = "100px",
@@ -67,7 +54,7 @@ export default function MockupAnimation() {
       idx: number;
       command: string;
       restText: string;
-      resultPanel: HTMLElement | null;
+      resultPanelSelector: string;
       populate?: (timeline: gsap.core.Timeline, start: number) => void;
       holdAfter?: number;
       resetTop?: string;
@@ -78,14 +65,20 @@ export default function MockupAnimation() {
 
       tl.call(() => {
         setActiveDot(idx);
-        if (emailSubjectRef.current) emailSubjectRef.current.textContent = "";
-        if (emailContentRef.current) emailContentRef.current.textContent = "";
-        if (rewriteBeforeRef.current) rewriteBeforeRef.current.textContent = "";
-        if (rewriteAfterRef.current) rewriteAfterRef.current.textContent = "";
-        if (promptTextRef.current) promptTextRef.current.textContent = "";
+        const subject = q("#emailSubject")[0];
+        const content = q("#emailContent")[0];
+        const beforeText = q("#rewriteBefore")[0];
+        const afterText = q("#rewriteAfter")[0];
+        const promptText = q("#promptText")[0];
+        
+        if (subject) subject.textContent = "";
+        if (content) content.textContent = "";
+        if (beforeText) beforeText.textContent = "";
+        if (afterText) afterText.textContent = "";
+        if (promptText) promptText.textContent = "";
       })
         // Reset state for this sequence
-        .set([emailPanelRef.current, rewritePanelRef.current, promptPanelRef.current], {
+        .set(q("#emailPanel, #rewritePanel, #promptPanel"), {
           opacity: 0,
           scale: 0.97,
           xPercent: -50,
@@ -93,25 +86,25 @@ export default function MockupAnimation() {
           left: "50%",
           top: resetTop,
         })
-        .set(inputRef.current, { 
+        .set(q("#floatingInput"), { 
           opacity: 0, 
           y: -20, 
           xPercent: -50,
           left: "50%",
           scale: 0.92 
         })
-        .set(shimmerRef.current, { opacity: 0 })
-        .set(sentBadgeRef.current, { opacity: 0 })
-        .set(cmdRef.current, { textContent: "" })
-        .set(restRef.current, { textContent: "" })
-        .set(cursorRef.current, { opacity: 1 })
+        .set(q("#inputShimmer"), { opacity: 0 })
+        .set(q("#sentBadge"), { opacity: 0 })
+        .set(q("#inputCmd"), { textContent: "" })
+        .set(q("#inputRest"), { textContent: "" })
+        .set(q("#inputCursor"), { opacity: 1 })
         
         // 0s: shortcut hint fades in
-        .to(hintRef.current, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0)
-        .to(hintRef.current, { opacity: 0, duration: 0.4, ease: "power2.in" }, 0.85)
+        .to(q("#shortcutHint"), { opacity: 1, duration: 0.4, ease: "power2.out" }, 0)
+        .to(q("#shortcutHint"), { opacity: 0, duration: 0.4, ease: "power2.in" }, 0.85)
         
         // 1s: floating input slides down
-        .to(inputRef.current, {
+        .to(q("#floatingInput"), {
           opacity: 1,
           y: 0,
           scale: 1,
@@ -121,18 +114,18 @@ export default function MockupAnimation() {
         }, 1);
 
       // 1.5s -> 3s: typewriter command + rest
-      tl.set(cursorRef.current, { animation: "none", opacity: 1 }, 1.5);
-      tl.add(tw(cmdRef.current, command, 0.45), 1.5);
-      tl.add(tw(restRef.current, restText, 1.05), 1.95);
-      tl.set(cursorRef.current, { clearProps: "animation" }, 3.0);
+      tl.set(q("#inputCursor"), { animation: "none", opacity: 1 }, 1.5);
+      tl.add(tw("#inputCmd", command, 0.45), 1.5);
+      tl.add(tw("#inputRest", restText, 1.05), 1.95);
+      tl.set(q("#inputCursor"), { clearProps: "animation" }, 3.0);
 
       // 3s -> 3.5s: shimmer loading
-      tl.to(shimmerRef.current, { opacity: 1, duration: 0.18 }, 3.0)
-        .to(cursorRef.current, { opacity: 0, duration: 0.2 }, 3.0)
-        .to(shimmerRef.current, { opacity: 0, duration: 0.25 }, 3.45);
+      tl.to(q("#inputShimmer"), { opacity: 1, duration: 0.18 }, 3.0)
+        .to(q("#inputCursor"), { opacity: 0, duration: 0.2 }, 3.0)
+        .to(q("#inputShimmer"), { opacity: 0, duration: 0.25 }, 3.45);
 
       // 3.5s: input fades / scales out
-      tl.to(inputRef.current, {
+      tl.to(q("#floatingInput"), {
         opacity: 0,
         scale: 0.92,
         y: -8,
@@ -142,7 +135,7 @@ export default function MockupAnimation() {
       }, 3.5);
 
       // 3.75s: result panel appears
-      tl.to(resultPanel, {
+      tl.to(q(resultPanelSelector), {
         opacity: 1,
         scale: 1,
         xPercent: -50,
@@ -159,7 +152,7 @@ export default function MockupAnimation() {
 
       // Hold + fade out everything
       const fadeAt = 3.95 + holdAfter + 1.2;
-      tl.to(resultPanel, {
+      tl.to(q(resultPanelSelector), {
         opacity: 0,
         scale: 0.96,
         xPercent: -50,
@@ -183,21 +176,21 @@ export default function MockupAnimation() {
       idx: 0,
       command: "/coldemail",
       restText: " shah@gmail.com fullstack role google",
-      resultPanel: emailPanelRef.current,
+      resultPanelSelector: "#emailPanel",
       holdAfter: 3.8,
       resetTop: "100px",
       activeTop: "80px",
       exitTop: "70px",
       populate: (tl, start) => {
-        tl.add(tw(emailSubjectRef.current, "Exploring Full Stack Opportunities at Google", 1.2, true), start);
+        tl.add(tw("#emailSubject", "Exploring Full Stack Opportunities at Google", 1.2, true), start);
         const emailBody =
           "Hi Shah,\n\n" +
           "I came across the full-stack engineering opening at Google and wanted to reach out directly.\n" +
           "I've spent the last few years shipping production-grade web apps end-to-end — and I'd love to bring that to your team.";
-        tl.add(tw(emailContentRef.current, emailBody, 2.2, true), start + 1.35);
-        tl.to(sendBtnRef.current, { scale: 0.93, duration: 0.1, yoyo: true, repeat: 1 }, start + 3.7);
-        tl.to(sentBadgeRef.current, { opacity: 1, scale: 1.08, duration: 0.25, ease: "power2.out" }, start + 3.9)
-          .to(sentBadgeRef.current, { scale: 1, duration: 0.15 }, start + 4.15);
+        tl.add(tw("#emailContent", emailBody, 2.2, true), start + 1.35);
+        tl.to(q("#sendBtn"), { scale: 0.93, duration: 0.1, yoyo: true, repeat: 1 }, start + 3.7);
+        tl.to(q("#sentBadge"), { opacity: 1, scale: 1.08, duration: 0.25, ease: "power2.out" }, start + 3.9)
+          .to(q("#sentBadge"), { scale: 1, duration: 0.15 }, start + 4.15);
       }
     }));
 
@@ -207,17 +200,17 @@ export default function MockupAnimation() {
       idx: 1,
       command: "/rewrite",
       restText: " i want job pls help me",
-      resultPanel: rewritePanelRef.current,
+      resultPanelSelector: "#rewritePanel",
       holdAfter: 2.8,
       resetTop: "160px",
       activeTop: "140px",
       exitTop: "130px",
       populate: (tl, start) => {
-        tl.add(tw(rewriteBeforeRef.current, "i want job pls help me", 0.85, true), start);
-        tl.add(tw(rewriteAfterRef.current,
+        tl.add(tw("#rewriteBefore", "i want job pls help me", 0.85, true), start);
+        tl.add(tw("#rewriteAfter",
           "I am actively exploring full-stack engineering opportunities and would love to connect.",
           1.8, true), start + 0.95);
-        tl.to(rewritePanelRef.current?.querySelector(`.${styles.after}`) || null, {
+        tl.to(q("#rewriteAfterSide"), {
           borderColor: "rgba(40, 200, 100, 0.45)",
           boxShadow: "0 0 15px rgba(40, 200, 100, 0.2)",
           duration: 0.45,
@@ -234,7 +227,7 @@ export default function MockupAnimation() {
       idx: 2,
       command: "/prompt",
       restText: " hospital website",
-      resultPanel: promptPanelRef.current,
+      resultPanelSelector: "#promptPanel",
       holdAfter: 3.2,
       resetTop: "150px",
       activeTop: "130px",
@@ -242,10 +235,10 @@ export default function MockupAnimation() {
       populate: (tl, start) => {
         const promptStr =
           "A clean, modern hospital website homepage with a calming blue and white color palette, featuring a hero section with a doctor image, appointment booking CTA, services grid, and trust badges. Professional, accessible, mobile-first design.";
-        tl.add(tw(promptTextRef.current, promptStr, 3.0, true), start);
-        tl.to(promptPanelRef.current?.querySelector(`.${styles.promptCard}`) || null, {
-          borderColor: "rgba(108, 71, 255, 0.5)",
-          boxShadow: "0 0 15px rgba(108, 71, 255, 0.18)",
+        tl.add(tw("#promptText", promptStr, 3.0, true), start);
+        tl.to(q("#promptCard"), {
+          borderColor: "var(--color-brand-glow)",
+          boxShadow: "0 0 15px var(--color-brand-glow-subtle)",
           duration: 0.45,
           yoyo: true,
           repeat: 1,
@@ -278,11 +271,11 @@ export default function MockupAnimation() {
         <div className={`${styles.mockupDot} ${styles.red}`}></div>
         <div className={`${styles.mockupDot} ${styles.yellow}`}></div>
         <div className={`${styles.mockupDot} ${styles.green}`}></div>
-        <div className={styles.mockupTitle}>Intento — Desktop</div>
+        <div className={styles.mockupTitle}>YoType — Desktop</div>
       </div>
       <div className={styles.mockupBody}>
         {/* Shortcut hint */}
-        <div className={styles.shortcutHint} id="shortcutHint" ref={hintRef}>
+        <div className={styles.shortcutHint} id="shortcutHint">
           <span>Press</span>
           <span className={styles.key}>Ctrl</span>
           <span>+</span>
@@ -290,36 +283,35 @@ export default function MockupAnimation() {
         </div>
 
         {/* Floating command input */}
-        <div className={styles.floatingInput} id="floatingInput" ref={inputRef}>
+        <div className={styles.floatingInput} id="floatingInput">
           <span className={styles.inputPrefix} aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
             </svg>
           </span>
           <div className={styles.inputText}>
-            <span className={styles.inputCmd} id="inputCmd" ref={cmdRef}></span>
-            <span className={styles.inputRest} id="inputRest" ref={restRef}></span>
-            <span className={styles.inputCursor} id="inputCursor" ref={cursorRef}></span>
+            <span className={styles.inputCmd} id="inputCmd"></span>
+            <span className={styles.inputRest} id="inputRest"></span>
+            <span className={styles.inputCursor} id="inputCursor"></span>
           </div>
-          <div className={styles.inputShimmer} id="inputShimmer" ref={shimmerRef}></div>
+          <div className={styles.inputShimmer} id="inputShimmer"></div>
         </div>
 
         {/* SEQUENCE 1: Gmail Panel */}
-        <div className={styles.resultPanel} id="emailPanel" ref={emailPanelRef}>
+        <div className={styles.resultPanel} id="emailPanel">
           <div className={styles.emailPanel}>
             <div className={styles.emailHeader}>
               <div className={styles.gmailLogo}>M</div>
               <div className={styles.emailTab}>New Message</div>
             </div>
             <div className={styles.emailBody}>
-              <div className={styles.emailMeta}><span>To:</span><strong>shah@gmail.com</strong></div>
-              <div className={styles.emailMeta}><span>From:</span><strong>you@workmail.com</strong></div>
-              <div className={styles.emailSubject} id="emailSubject" ref={emailSubjectRef}></div>
-              <div className={styles.emailContent} id="emailContent" ref={emailContentRef}></div>
+              <div className={styles.emailMeta}><span>To:</span><strong>shah@google.com</strong></div>
+              <div className={styles.emailSubject} id="emailSubject"></div>
+              <div className={styles.emailContent} id="emailContent"></div>
             </div>
             <div className={styles.emailActions}>
-              <div className={styles.sendBtn} ref={sendBtnRef}>Send</div>
-              <div className={styles.sentBadge} id="sentBadge" ref={sentBadgeRef}>
+              <div className={styles.sendBtn} id="sendBtn">Send</div>
+              <div className={styles.sentBadge} id="sentBadge">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
@@ -330,9 +322,9 @@ export default function MockupAnimation() {
         </div>
 
         {/* SEQUENCE 2: Before / After */}
-        <div className={styles.resultPanel} id="rewritePanel" ref={rewritePanelRef}>
+        <div className={styles.resultPanel} id="rewritePanel">
           <div className={styles.rewriteCard}>
-            <div className={`${styles.rewriteSide} ${styles.before}`}>
+            <div className={`${styles.rewriteSide} ${styles.before}`} id="rewriteBeforeSide">
               <div className={styles.rewriteLabel}>
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -340,27 +332,27 @@ export default function MockupAnimation() {
                 </svg>
                 Before
               </div>
-              <div className={styles.rewriteText} id="rewriteBefore" ref={rewriteBeforeRef}></div>
+              <div className={styles.rewriteText} id="rewriteBefore"></div>
             </div>
-            <div className={`${styles.rewriteSide} ${styles.after}`}>
+            <div className={`${styles.rewriteSide} ${styles.after}`} id="rewriteAfterSide">
               <div className={styles.rewriteLabel}>
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
                 After
               </div>
-              <div className={styles.rewriteText} id="rewriteAfter" ref={rewriteAfterRef}></div>
+              <div className={styles.rewriteText} id="rewriteAfter"></div>
             </div>
           </div>
         </div>
 
         {/* SEQUENCE 3: Prompt Card */}
-        <div className={styles.resultPanel} id="promptPanel" ref={promptPanelRef}>
-          <div className={styles.promptCard}>
+        <div className={styles.resultPanel} id="promptPanel">
+          <div className={styles.promptCard} id="promptCard">
             <div className={styles.promptCardHeader}>
               <div className={styles.promptCardTitle}>Generated Prompt</div>
             </div>
-            <div className={styles.promptText} id="promptText" ref={promptTextRef}></div>
+            <div className={styles.promptText} id="promptText"></div>
           </div>
         </div>
 

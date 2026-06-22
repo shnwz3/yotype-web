@@ -17,11 +17,15 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Intento — Your Personal AI. Lives in Every Keystroke.",
-  description: "Intento Brings AI into any text field on your desktop. One /command and it writes, rewrites, fills, and sends.",
+  title: "YoType — Your Personal AI. Lives in Every Keystroke.",
+  description: "YoType Brings AI into any text field on your desktop. One /command and it writes, rewrites, fills, and sends.",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
   openGraph: {
-    title: "Intento — Your Personal AI. Lives in Every Keystroke.",
-    description: "Intento Brings AI into any text field on your desktop. One /command and it writes, rewrites, fills, and sends.",
+    title: "YoType — Your Personal AI. Lives in Every Keystroke.",
+    description: "YoType Brings AI into any text field on your desktop. One /command and it writes, rewrites, fills, and sends.",
     type: "website",
   },
 };
@@ -39,8 +43,9 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full bg-[#080808] text-white font-sans antialiased overflow-x-hidden">
+      <body className="min-h-full bg-[#080808] text-white font-sans antialiased overflow-x-hidden" suppressHydrationWarning>
         {children}
       </body>
     </html>

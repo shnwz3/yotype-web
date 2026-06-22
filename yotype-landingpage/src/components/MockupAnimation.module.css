@@ -8,7 +8,7 @@
   border-radius: 14px;
   overflow: hidden;
   box-shadow:
-    0 0 80px rgba(108, 71, 255, 0.15),
+    0 0 80px var(--color-brand-glow-subtle),
     0 30px 60px -20px rgba(0, 0, 0, 0.7);
 }
 
@@ -43,8 +43,8 @@
   position: relative;
   height: calc(100% - 32px);
   background:
-    radial-gradient(ellipse 600px 400px at 30% 20%, rgba(108, 71, 255, 0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 500px 300px at 80% 80%, rgba(0, 212, 255, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 600px 400px at 30% 20%, var(--color-brand-light) 0%, transparent 60%),
+    radial-gradient(ellipse 500px 300px at 80% 80%, var(--color-accent-light) 0%, transparent 60%),
     #0a0a0d;
   overflow: hidden;
 }
@@ -94,10 +94,10 @@
   transform: translateX(-50%) translateY(-20px);
   width: min(480px, 86%);
   background: rgba(20, 20, 20, 0.92);
-  border: 1px solid rgba(108, 71, 255, 0.4);
+  border: 1px solid var(--color-brand-glow-mid);
   border-radius: 12px;
   padding: 14px 20px;
-  box-shadow: 0 0 40px rgba(108, 71, 255, 0.2), 0 12px 28px rgba(0,0,0,0.55);
+  box-shadow: 0 0 40px var(--color-brand-glow-subtle), 0 12px 28px rgba(0,0,0,0.55);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   opacity: 0;
@@ -108,7 +108,7 @@
 }
 
 .inputPrefix {
-  color: #6c47ff;
+  color: var(--color-brand);
   font-size: 13px;
   display: inline-flex;
   align-items: center;
@@ -133,7 +133,7 @@
 }
 
 .inputCmd {
-  color: #6c47ff;
+  color: var(--color-brand);
   font-weight: 600;
 }
 
@@ -146,7 +146,7 @@
   display: inline-block;
   width: 7px;
   height: 16px;
-  background: #6c47ff;
+  background: var(--color-brand);
   margin-left: 2px;
   animation: blink 1s steps(2, jump-none) infinite;
   vertical-align: middle;
@@ -166,7 +166,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(108, 71, 255, 0.25) 50%,
+    var(--color-brand-glow-subtle) 50%,
     transparent 100%
   );
   background-size: 200% 100%;
@@ -356,10 +356,10 @@
 /* Prompt Card */
 .promptCard {
   background: rgba(15, 15, 18, 0.94);
-  border: 1px solid rgba(108, 71, 255, 0.25);
+  border: 1px solid var(--color-brand-glow-subtle);
   border-radius: 12px;
   padding: 18px 20px;
-  box-shadow: 0 0 40px rgba(108, 71, 255, 0.12);
+  box-shadow: 0 0 40px var(--color-brand-light);
 }
 
 .promptCardHeader {
@@ -384,9 +384,9 @@
   content: "";
   width: 6px;
   height: 6px;
-  background: #6c47ff;
+  background: var(--color-brand);
   border-radius: 50%;
-  box-shadow: 0 0 8px #6c47ff;
+  box-shadow: 0 0 8px var(--color-brand);
 }
 
 .promptCopy {
@@ -428,8 +428,8 @@
 }
 
 .seqDot.active {
-  background: #6c47ff;
-  box-shadow: 0 0 10px rgba(108, 71, 255, 0.7);
+  background: var(--color-brand);
+  box-shadow: 0 0 10px var(--color-brand-glow);
   transform: scale(1.2);
 }
 
