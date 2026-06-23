@@ -271,7 +271,7 @@ export default function MockupAnimation() {
         <div className={`${styles.mockupDot} ${styles.red}`}></div>
         <div className={`${styles.mockupDot} ${styles.yellow}`}></div>
         <div className={`${styles.mockupDot} ${styles.green}`}></div>
-        <div className={styles.mockupTitle}>YoType — Desktop</div>
+        <div className={styles.mockupTitle}>YoType - Typing Assistant</div>
       </div>
       <div className={styles.mockupBody}>
         {/* Shortcut hint */}
