@@ -48,8 +48,8 @@ export default function Navbar() {
         data-testid="nav-brand"
         onClick={(e) => scrollTo(e, "#")}
       >
-        <img src="/logo.png" alt="YoType Logo" className="brand-logo" />
-        <span>YoType</span>
+        {/* <img src="/logo.png" alt="YoType Logo" className="brand-logo" /> */}
+        <span className="text-2xl font-semibold">YoType</span>
       </a>
 
       <div className="nav-links" data-testid="nav-links">

@@ -6,7 +6,7 @@ export default function HowItWorks() {
   const steps = [
     {
       number: "01",
-      iconText: "⌃Space",
+      iconText: " + space",
       title: "Press Your Shortcut",
       desc: "Hit Ctrl + Space from anywhere on your desktop. Yotype's floating input box appears instantly on top of any app you are using.",
       iconStyles: {

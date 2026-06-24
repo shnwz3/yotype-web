@@ -41,13 +41,14 @@ export default function Hero() {
         {/* LEFT COLUMN */}
         <div className="hero-left" data-testid="hero-left">
           <div className="hero-eyebrow" data-anim="left">
-            <span className="eyebrow-tag">New</span>
-            <span>Triggered from any text field</span>
+            <span className="eyebrow-tag">Ai</span>
+            <span>Triggered from any text field on your desktop</span>
           </div>
           
           <h1 className="headline" data-anim="left" data-testid="hero-headline">
-            Your Personal AI.<br />
-            <span className="accent">Lives in Every Keystroke.</span>
+            Prompt once.<br />
+            Create simple <span className="accent">/commands</span><br />
+            Use them anywhere you type.
           </h1>
           
           <p className="subhead" data-anim="left" data-testid="hero-subhead">
@@ -70,11 +71,11 @@ export default function Hero() {
             </a>
           </div>
           
-          <div className="social-proof" data-anim="left" data-testid="social-proof">
+          {/* <div className="social-proof" data-anim="left" data-testid="social-proof">
             <span>⬇ 2,400+ downloads</span>
             <span>★ 4.8 rating</span>
             <span>🖥 Windows &amp; Mac</span>
-          </div>
+          </div> */}
           
           <div className="pills-wrapper" data-anim="left" data-testid="pills-strip">
             <div className="pills-track" id="pillsTrack">
