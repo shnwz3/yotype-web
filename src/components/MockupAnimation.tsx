@@ -186,7 +186,7 @@ export default function MockupAnimation() {
         const emailBody =
           "Hi Shah,\n\n" +
           "I came across the full-stack engineering opening at Google and wanted to reach out directly.\n" +
-          "I've spent the last few years shipping production-grade web apps end-to-end — and I'd love to bring that to your team.";
+          "I've spent the last few years shipping production-grade web apps end-to-end  and I'd love to bring that to your team.";
         tl.add(tw("#emailContent", emailBody, 2.2, true), start + 1.35);
         tl.to(q("#sendBtn"), { scale: 0.93, duration: 0.1, yoyo: true, repeat: 1 }, start + 3.7);
         tl.to(q("#sentBadge"), { opacity: 1, scale: 1.08, duration: 0.25, ease: "power2.out" }, start + 3.9)

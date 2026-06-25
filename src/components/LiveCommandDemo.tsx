@@ -36,7 +36,7 @@ const COMMANDS = [
     subject: "Subject: Exploring Full Stack Engineering Opportunities at Google",
     body: `Hi [Hiring Manager],
 
-I came across Google's engineering roles and wanted to reach out directly. I am a full-stack developer specializing in AI-integrated applications, having built products like Yotype — a system-wide AI typing assistant built with Electron, React, and FastAPI.
+I came across Google's engineering roles and wanted to reach out directly. I am a full-stack developer specializing in AI-integrated applications, having built products like Yotype  a system-wide AI typing assistant built with Electron, React, and FastAPI.
 
 I would love to explore how I can contribute to your team.
 
@@ -329,11 +329,10 @@ export default function LiveCommandDemo() {
         <div className="custom-cmd-showcase" id="custom-commands" data-testid="custom-commands-section">
           <div className="custom-cmd-header">
             <span className="custom-cmd-eyebrow">CUSTOM COMMANDS</span>
-            <h3 className="custom-cmd-title">Your Commands. Your Rules.</h3>
+            <h3 className="custom-cmd-title">Create once. Use everywhere. Forever.</h3>
             <p className="custom-cmd-sub">
-              Those were just the defaults. Create your own prompt once, save it as a
-              <span className="custom-cmd-highlight"> /command</span>, and reuse it
-              in any app — forever. No repetitive copying. No rewriting prompts.
+              Those were the defaults. The real power is building your own library. Write a prompt once, save it as a
+              <span className="custom-cmd-highlight"> /command</span>, and reuse it in any app.
             </p>
           </div>
 
@@ -342,7 +341,7 @@ export default function LiveCommandDemo() {
             <div className="custom-cmd-step">
               <div className="custom-cmd-step-badge">1</div>
               <div className="custom-cmd-step-content">
-                <h4 className="custom-cmd-step-title">Write your prompt once</h4>
+                <h4 className="custom-cmd-step-title">Write your prompt once, add placeholders for what changes</h4>
                 <div className="custom-cmd-code-block">
                   <div className="custom-cmd-code-header">
                     <span className="custom-cmd-code-dot" style={{ background: "#ff5f57" }}></span>
@@ -352,7 +351,7 @@ export default function LiveCommandDemo() {
                   </div>
                   <div className="custom-cmd-code-body">
                     <p><span className="custom-cmd-code-key">Name:</span> <span className="custom-cmd-code-val">/outreach</span></p>
-                    <p><span className="custom-cmd-code-key">Prompt:</span> <span className="custom-cmd-code-val">&quot;Write a professional outreach message to &#123;name&#125; at &#123;company&#125; for &#123;role&#125;. Keep it under 80 words, friendly but direct.&quot;</span></p>
+                    <p><span className="custom-cmd-code-key">Prompt:</span> <span className="custom-cmd-code-val">&quot;Write a personalized cold outreach email for &#123;&#123;company&#125;&#125;, &#123;&#123;role&#125;&#125;, &#123;&#123;person&#125;&#125;. Keep it under 80 words, direct and human.&quot;</span></p>
                   </div>
                 </div>
               </div>
@@ -368,18 +367,18 @@ export default function LiveCommandDemo() {
             <div className="custom-cmd-step">
               <div className="custom-cmd-step-badge">2</div>
               <div className="custom-cmd-step-content">
-                <h4 className="custom-cmd-step-title">Use it anywhere — Gmail, LinkedIn, Slack, any text field</h4>
+                <h4 className="custom-cmd-step-title">Use it anywhere  Gmail, LinkedIn, Slack, Whatsapp, ChatGPT, any text field</h4>
                 <div className="custom-cmd-usage-demo">
                   <div className="custom-cmd-usage-input">
                     <span className="custom-cmd-usage-prefix">›</span>
                     <span className="custom-cmd-usage-text">
                       <span className="custom-cmd-usage-cmd">/outreach</span>{" "}
-                      Sarah at Stripe for frontend engineer
+                      Stripe, frontend engineer, Sarah
                     </span>
                   </div>
                   <div className="custom-cmd-usage-output">
                     <span className="custom-cmd-usage-tag">OUTPUT</span>
-                    <p>Hi Sarah, I came across Stripe&apos;s frontend engineering team and was immediately drawn to the caliber of work being done. I&apos;m a frontend engineer with experience in React, TypeScript, and design systems. Would love to chat about how I could contribute. Happy to share my portfolio if helpful!</p>
+                    <p>Hi Sarah, I came across Stripe&apos;s frontend engineering team and wanted to reach out directly. I&apos;m a frontend engineer with deep experience in React and TypeScript. I&apos;d love to chat about how I could contribute  happy to share my portfolio if useful!</p>
                   </div>
                 </div>
               </div>
@@ -390,7 +389,7 @@ export default function LiveCommandDemo() {
           <div className="custom-cmd-benefits">
             <div className="custom-cmd-benefit">
               <span className="custom-cmd-benefit-icon">⚡</span>
-              <span>Create once, use forever</span>
+              <span>Create once, reuse forever</span>
             </div>
             <div className="custom-cmd-benefit">
               <span className="custom-cmd-benefit-icon">🔁</span>

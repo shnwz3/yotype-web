@@ -433,7 +433,7 @@ button {
 
 .social-proof {
   font-size: 13px;
-  color: #555;
+  color: #777;
   display: flex;
   gap: 22px;
   flex-wrap: wrap;
@@ -444,6 +444,11 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.social-proof span:hover {
+  color: #aaa;
 }
 
 /* Scrolling Pills */
@@ -1094,6 +1099,90 @@ button {
   background: var(--color-brand);
   box-shadow: 0 0 10px var(--color-brand);
   transform: translate(0, -50%);
+}
+
+/* Time Comparison Callout */
+.how-it-works-callout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin: 80px auto 0;
+  max-width: 900px;
+  padding: 36px 40px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  flex-wrap: wrap;
+}
+
+.how-it-works-callout-before,
+.how-it-works-callout-after {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 240px;
+}
+
+.how-it-works-callout-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.how-it-works-callout-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.how-it-works-callout-step {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid;
+  font-weight: 500;
+}
+
+.how-it-works-callout-step-old {
+  background: rgba(255, 95, 87, 0.06);
+  border-color: rgba(255, 95, 87, 0.2);
+  color: #ff8a82;
+}
+
+.how-it-works-callout-step-new {
+  background: rgba(108, 71, 255, 0.08);
+  border-color: rgba(108, 71, 255, 0.3);
+  color: var(--color-brand-tint);
+}
+
+.how-it-works-callout-time {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.how-it-works-callout-time-old {
+  color: #555;
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 95, 87, 0.4);
+}
+
+.how-it-works-callout-time-new {
+  color: var(--color-brand-tint);
+}
+
+.how-it-works-callout-arrow {
+  font-size: 28px;
+  color: #333;
+  flex-shrink: 0;
 }
 
 /* Platforms marquee */
@@ -1803,6 +1892,17 @@ button {
 
   .how-it-works-headline {
     margin-bottom: 56px;
+  }
+
+  .how-it-works-callout {
+    flex-direction: column;
+    gap: 24px;
+    padding: 28px 24px;
+    margin-top: 56px;
+  }
+
+  .how-it-works-callout-arrow {
+    transform: rotate(90deg);
   }
 
   .how-it-works-platforms {

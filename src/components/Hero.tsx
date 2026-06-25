@@ -41,33 +41,33 @@ export default function Hero() {
         {/* LEFT COLUMN */}
         <div className="hero-left" data-testid="hero-left">
           <div className="hero-eyebrow" data-anim="left">
-            <span className="eyebrow-tag">Ai</span>
+            <span className="eyebrow-tag">Universal Typing Layer</span>
             <span>Triggered from any text field on your desktop</span>
           </div>
           
           <h1 className="headline" data-anim="left" data-testid="hero-headline">
-            Prompt once.<br />
-            Create simple <span className="accent">/commands</span><br />
-            Use them anywhere you type.
+            Create once.<br />
+            Use your <span className="accent">/commands</span><br />
+            everywhere you type.
           </h1>
           
           <p className="subhead" data-anim="left" data-testid="hero-subhead">
             YoType brings AI into any text field on your desktop. One{" "}
             <span style={{ fontFamily: "'JetBrains Mono', monospace", color: "var(--color-brand-tint)" }}>
-              /command
+              /commands
             </span>{" "}
             and it writes, rewrites, fills, and sends. No switching apps. No copy-pasting. Ever again.
           </p>
           
           <div className="cta-row" data-anim="left">
-            <a href="#download-windows" className="btn btn-primary" data-testid="cta-download-windows">
+            <a href="#download-windows" id="download-windows" className="btn btn-primary" data-testid="cta-download-windows">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"></path>
               </svg>
               Download for Windows
             </a>
-            <a href="#demo" className="btn btn-secondary" data-testid="cta-watch-demo">
-              Watch Full Demo →
+            <a href="#live-demo" className="btn btn-secondary" data-testid="cta-watch-demo">
+              See it in action →
             </a>
           </div>
           

@@ -6,8 +6,8 @@ export default function HowItWorks() {
   const steps = [
     {
       number: "01",
-      iconText: " + space",
-      title: "Press Your Shortcut",
+      iconText: "⌃ + space",
+      title: "Trigger from anywhere",
       desc: "Hit Ctrl + Space from anywhere on your desktop. Yotype's floating input box appears instantly on top of any app you are using.",
       iconStyles: {
         width: "52px",
@@ -21,16 +21,17 @@ export default function HowItWorks() {
       },
       textStyles: {
         fontFamily: "'JetBrains Mono', monospace",
-        fontSize: "14px",
+        fontSize: "11px",
         color: "var(--color-brand)",
         fontWeight: 500,
+        letterSpacing: "0.02em",
       },
       hasConnector: true,
     },
     {
       number: "02",
       iconText: "/",
-      title: "Type a Command",
+       title: "Type your command",
       desc: "Type /rewrite, /reply, /coldemail or any custom command you have created. Add context if needed and hit Enter.",
       iconStyles: {
         width: "52px",
@@ -55,8 +56,8 @@ export default function HowItWorks() {
     {
       number: "03",
       iconText: "✓",
-      title: "AI Acts Instantly",
-      desc: "Yotype writes directly into your text field. Gmail, LinkedIn, WhatsApp, Notion, VS Code, forms, documents. Anywhere you type.",
+      title: "Done. Stay in your flow.",
+      desc: "Your full prompt expands instantly  right where you need it. No tab switching. No copy-pasting. No losing your train of thought. 45 seconds becomes 2.",
       iconStyles: {
         width: "52px",
         height: "52px",
@@ -77,16 +78,19 @@ export default function HowItWorks() {
   ];
 
   const platforms = [
+    "ChatGPT",
+    "Claude",
     "Gmail",
+    "Slack",
     "LinkedIn",
-    "WhatsApp Web",
     "Notion",
     "VS Code",
+    "Cursor",
     "Google Docs",
-    "Slack",
-    "Twitter",
+    "WhatsApp Web",
     "Outlook",
     "Discord",
+    "Twitter / X",
     "Figma",
     "Any App",
   ];
@@ -154,10 +158,33 @@ export default function HowItWorks() {
           ))}
         </div>
 
+        {/* Time Comparison Callout */}
+        <div className="how-it-works-callout" data-testid="how-it-works-callout">
+          <div className="how-it-works-callout-before">
+            <span className="how-it-works-callout-label">Without Yotype</span>
+            <div className="how-it-works-callout-steps">
+              {["Think of prompt", "Open Notes", "Search for saved prompt", "Copy it", "Switch back", "Paste it", "Edit it for the current task"].map((s, i) => (
+                <span key={i} className="how-it-works-callout-step how-it-works-callout-step-old">{s}</span>
+              ))}
+            </div>
+            <span className="how-it-works-callout-time how-it-works-callout-time-old">~45 seconds</span>
+          </div>
+          <div className="how-it-works-callout-arrow" aria-hidden="true">→</div>
+          <div className="how-it-works-callout-after">
+            <span className="how-it-works-callout-label">With Yotype</span>
+            <div className="how-it-works-callout-steps">
+              {["Think of the prompt", "Type /command", "Instant result"].map((s, i) => (
+                <span key={i} className="how-it-works-callout-step how-it-works-callout-step-new">{s}</span>
+              ))}
+            </div>
+            <span className="how-it-works-callout-time how-it-works-callout-time-new">~2 seconds</span>
+          </div>
+        </div>
+
         {/* Platforms Marquee */}
         <div className="how-it-works-platforms" data-testid="how-it-works-platforms">
           <div className="how-it-works-platforms-label" data-testid="how-it-works-platforms-label">
-            Works seamlessly inside →
+            Works across all your tools  no integrations needed →
           </div>
           
           <div className="how-it-works-marquee">

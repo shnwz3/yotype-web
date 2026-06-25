@@ -3,14 +3,14 @@
 import React, { useCallback, useState, useRef, useEffect } from "react";
 
 const USE_CASES = [
-  { icon: "💻", role: "Developers", desc: "Git commits, code reviews, docs" },
-  { icon: "📧", role: "Sales & Outreach", desc: "Cold emails, follow-ups, LinkedIn" },
-  { icon: "✍️", role: "Content Writers", desc: "Rewrite, summarize, rephrase" },
-  { icon: "🎓", role: "Students", desc: "Essays, emails to professors, notes" },
-  { icon: "📋", role: "Product Managers", desc: "PRDs, tickets, stakeholder updates" },
-  { icon: "🎨", role: "Designers", desc: "AI prompts, client briefs, copy" },
-  { icon: "📊", role: "Marketers", desc: "Ad copy, social posts, campaigns" },
-  { icon: "⚖️", role: "Freelancers", desc: "Proposals, invoices, client comms" },
+  { icon: "💻", role: "Developers", desc: "/debug, /review, /commit  AI shortcuts" },
+  { icon: "📧", role: "Sales & Outreach", desc: "/coldmail, /follow-up, /linkedin" },
+  { icon: "✍️", role: "Content Writers", desc: "/blog, /rewrite, /summarize" },
+  { icon: "🎓", role: "Students", desc: "/explain, /essay, /email-prof" },
+  { icon: "📋", role: "Product Managers", desc: "/prd, /ticket, /analyze" },
+  { icon: "🎨", role: "Designers", desc: "/prompt, /brief, /copy" },
+  { icon: "📊", role: "Marketers", desc: "/campaign, /ad-copy, /brand-voice" },
+  { icon: "🚀", role: "Founders", desc: "/pitch, /jobpost, /research" },
 ];
 
 export default function Navbar() {
@@ -53,8 +53,8 @@ export default function Navbar() {
       </a>
 
       <div className="nav-links" data-testid="nav-links">
-        <a href="#" data-testid="nav-link-features" onClick={(e) => scrollTo(e, "#")}>Features</a>
-        <a href="#how-it-works" data-testid="nav-link-how-it-works" onClick={(e) => scrollTo(e, "#how-it-works")}>How It Works</a>
+        <a href="#how-it-works" data-testid="nav-link-features" onClick={(e) => scrollTo(e, "#how-it-works")}>How It Works</a>
+        <a href="#live-demo" data-testid="nav-link-how-it-works" onClick={(e) => scrollTo(e, "#live-demo")}>Commands</a>
 
         {/* Use Cases Dropdown */}
         <div className="nav-dropdown-wrapper" ref={dropdownRef}>
@@ -99,11 +99,10 @@ export default function Navbar() {
           )}
         </div>
 
-        <a href="#live-demo" data-testid="nav-link-commands" onClick={(e) => scrollTo(e, "#live-demo")}>Commands</a>
         <a href="#" data-testid="nav-link-pricing" onClick={(e) => scrollTo(e, "#")}>Pricing</a>
       </div>
 
-      <a href="#download" className="nav-cta" data-testid="nav-download-btn" onClick={(e) => scrollTo(e, "#")}>
+      <a href="#download-windows" className="nav-cta" data-testid="nav-download-btn" onClick={(e) => scrollTo(e, "#")}>
         Download
       </a>
     </nav>

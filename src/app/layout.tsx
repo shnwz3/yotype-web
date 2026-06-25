@@ -17,14 +17,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "YoType — Your Personal AI. Lives in Every Keystroke.",
+  title: "YoType - Your Personal AI. Lives in Every Keystroke.",
   description: "YoType Brings AI into any text field on your desktop. One /command and it writes, rewrites, fills, and sends.",
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",
   },
   openGraph: {
-    title: "YoType — Your Personal AI. Lives in Every Keystroke.",
+    title: "YoType - Your Personal AI. Lives in Every Keystroke.",
     description: "YoType Brings AI into any text field on your desktop. One /command and it writes, rewrites, fills, and sends.",
     type: "website",
   },
